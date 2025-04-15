@@ -406,8 +406,18 @@
 </pre></div>
 </div>
 </li>
+<li><p>Install the development package:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>dist/earth_data_kit-*.tar.gz
+</pre></div>
+</div>
+</li>
 <li><p>Create a GitHub release with the development tag:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nv">TAG</span><span class="o">=</span><span class="k">$(</span>poetry<span class="w"> </span>version<span class="w"> </span>-s<span class="k">)</span><span class="w"> </span>make<span class="w"> </span>release
+</pre></div>
+</div>
+</li>
+<li><p>Release the development documentation (hosted at <a class="reference external" href="https://earth-data-kit.github.io/dev-docs">https://earth-data-kit.github.io/dev-docs</a>):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nv">TAG</span><span class="o">=</span><span class="k">$(</span>poetry<span class="w"> </span>version<span class="w"> </span>-s<span class="k">)</span><span class="w"> </span>make<span class="w"> </span>release-dev-docs
 </pre></div>
 </div>
 </li>
