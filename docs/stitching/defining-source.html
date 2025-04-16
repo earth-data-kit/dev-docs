@@ -311,7 +311,7 @@
 </pre></div>
 </div>
 </li>
-<li><p><strong>Spatial Components</strong>: Use placeholders like <code class="docutils literal notranslate"><span class="pre">{h}</span></code> and <code class="docutils literal notranslate"><span class="pre">{v}</span></code> for horizontal and vertical grid coordinates. Note that you will have to provide the grid file for the remote dataset too:</p>
+<li><p><strong>Spatial Components</strong>: Use placeholders like <code class="docutils literal notranslate"><span class="pre">{h}</span></code> and <code class="docutils literal notranslate"><span class="pre">{v}</span></code> for horizontal and vertical grid coordinates. Note that you will have to provide a grid dataframe with the appropriate columns that match your placeholders:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">=</span> <span class="s2">&quot;s3://landsat-pds/c1/L8/</span><span class="si">{p}</span><span class="s2">/</span><span class="si">{r}</span><span class="s2">/%Y/%m/</span><span class="si">%d</span><span class="s2">/*.TIF&quot;</span>  <span class="c1"># {p} for path, {r} for row</span>
 </pre></div>
 </div>
