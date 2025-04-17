@@ -270,6 +270,8 @@
 <h1>AWS S3<a class="headerlink" href="#aws-s3" title="Link to this heading">¶</a></h1>
 <p>This example demonstrates how to use the Earth Data Kit to stitch together a collection of S3 files.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">earth_data_kit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">edk</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
 
 <span class="c1"># Initialize the Dataset using the S3 engine.</span>
 <span class="n">dataset_id</span> <span class="o">=</span> <span class="s2">&quot;example_s3_dataset&quot;</span>
@@ -288,16 +290,9 @@
 <span class="n">bbox</span> <span class="o">=</span> <span class="p">(</span><span class="mf">19.3044861183</span><span class="p">,</span> <span class="mf">39.624997667</span><span class="p">,</span> <span class="mf">21.0200403175</span><span class="p">,</span> <span class="mf">42.6882473822</span><span class="p">)</span>
 <span class="c1"># Specify the grid file that maps the dataset&#39;s grid system (e.g., a KML file)</span>
 <span class="n">grid_file</span> <span class="o">=</span> <span class="s2">&quot;path/to/grid/file.kml&quot;</span>
+<span class="n">grid_df</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">grid_file</span><span class="p">)</span>
 
-<span class="c1"># Define a function to extract grid components (horizontal &#39;h&#39; and vertical &#39;v&#39;) from a grid file row.</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">extract_grid_components</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
-    <span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
-    <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;h:(\d+)\s+v:(\d+)&quot;</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">Name</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;h&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;v&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
-    <span class="k">return</span> <span class="p">{}</span>
-
-<span class="n">ds</span><span class="o">.</span><span class="n">set_spacebounds</span><span class="p">(</span><span class="n">bbox</span><span class="p">,</span> <span class="n">grid_file</span><span class="p">,</span> <span class="n">extract_grid_components</span><span class="p">)</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">set_spacebounds</span><span class="p">(</span><span class="n">bbox</span><span class="p">,</span> <span class="n">grid_df</span><span class="p">)</span>
 
 <span class="c1"># Discover the available scene files within the defined spatial and temporal bounds.</span>
 <span class="n">ds</span><span class="o">.</span><span class="n">discover</span><span class="p">()</span>
