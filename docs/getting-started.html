@@ -274,7 +274,7 @@
 <ul class="simple">
 <li><p>Python 3.12 or newer</p></li>
 <li><p>GDAL 3.10 or above - <a class="reference external" href="https://gdal.org/en/stable/download.html#binaries">https://gdal.org/en/stable/download.html#binaries</a></p></li>
-<li><p>s5cmd - <a class="reference external" href="https://github.com/peak/s5cmd">https://github.com/peak/s5cmd</a></p></li>
+<li><p>s5cmd (optional) - <a class="reference external" href="https://github.com/peak/s5cmd">https://github.com/peak/s5cmd</a> - Only required if you plan to query data from S3 buckets</p></li>
 </ul>
 </section>
 <section id="installation">
@@ -287,8 +287,8 @@
 </ul>
 </li>
 <li><p>After downloading the tarball, install the package using pip. For example, within your virtual environment execute:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$ </span>wget<span class="w"> </span>https://github.com/siddhantgupta3/earth-data-kit/releases/download/1.0.0a1/earth_data_kit-1.0.0a1.tar.gz
-<span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$ </span>pip3<span class="w"> </span>install<span class="w"> </span>earth_data_kit-1.0.0a1.tar.gz
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$ </span>wget<span class="w"> </span>https://github.com/siddhantgupta3/earth-data-kit/releases/download/0.1.2.dev20250415/earth_data_kit-0.1.2.dev20250415.tar.gz
+<span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$ </span>pip3<span class="w"> </span>install<span class="w"> </span>earth_data_kit-0.1.2.dev20250415.tar.gz
 </pre></div>
 </div>
 </li>
@@ -307,7 +307,7 @@
 <section id="aws-options">
 <h3>AWS Options<a class="headerlink" href="#aws-options" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">AWS_REGION</span></code>: Specifies the AWS region to use (e.g., us-west-2).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AWS_REGION</span></code>: Specifies the AWS region where the data is stored (e.g., us-west-2). Use the region data is stored in when downloading data from AWS S3.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">AWS_NO_SIGN_REQUEST</span></code> (YES/NO): If set to YES, this option disables request signing, meaning AWS credentials will be bypassed.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">AWS_REQUEST_PAYER</span></code> (requester): Indicates that the requester accepts any charges that may result from the request. Use this when accessing buckets that require payer confirmation.</p></li>
 </ul>
