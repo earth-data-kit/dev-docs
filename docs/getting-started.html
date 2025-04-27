@@ -281,18 +281,24 @@
 <h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
 <p>To install Earth Data Kit, follow these steps:</p>
 <ol class="arabic">
-<li><p>Download the latest release from the official GitHub releases page:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/earth-data-kit/earth-data-kit/releases">https://github.com/earth-data-kit/earth-data-kit/releases</a></p></li>
-</ul>
+<li><p>Clone the GitHub repository:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/earth-data-kit/earth-data-kit.git
+<span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>earth-data-kit
+</pre></div>
+</div>
 </li>
-<li><p>After downloading the tarball, install the package using pip. For example, within your virtual environment execute:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$ </span>wget<span class="w"> </span>https://github.com/siddhantgupta3/earth-data-kit/releases/download/0.1.2.dev20250415/earth_data_kit-0.1.2.dev20250415.tar.gz
-<span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$ </span>pip3<span class="w"> </span>install<span class="w"> </span>earth_data_kit-0.1.2.dev20250415.tar.gz
+<li><p>Switch to the master branch:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git<span class="w"> </span>checkout<span class="w"> </span>master
+</pre></div>
+</div>
+</li>
+<li><p>Run the installation script:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>bash<span class="w"> </span>install.sh
 </pre></div>
 </div>
 </li>
 </ol>
+<p>This will check prerequisites, download the latest tarball from GitHub releases, and install EDK automatically.</p>
 </section>
 <section id="environment-configuration">
 <h2>Environment Configuration<a class="headerlink" href="#environment-configuration" title="Link to this heading">¶</a></h2>
