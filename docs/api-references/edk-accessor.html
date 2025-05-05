@@ -270,35 +270,33 @@
 <h1>EDK Accessor<a class="headerlink" href="#edk-accessor" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">earth_data_kit.xarray_boosted.edk_accessor.</span></span><span class="sig-name descname"><span class="pre">EDKAccessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xarray_obj</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">earth_data_kit.xarray_boosted.edk_accessor.</span></span><span class="sig-name descname"><span class="pre">EDKAccessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xarray_obj</span></span></em><span class="sig-paren">)</span></dt>
 <dd><p>The EDK Accessor extends xarray’s functionality by providing additional methods for working with Earth Data Kit datasets.
 This accessor is automatically registered with xarray when edk is imported, allowing you to access these extended capabilities through the <cite>.edk</cite> namespace on xarray objects.</p>
 <dl class="py method">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'folium'</span></span></em><span class="sig-paren">)</span></dt>
-<dd><p>Plot the DataArray using the specified visualization engine.</p>
-<p>This function visualizes geospatial data contained in the DataArray.
-Currently supports two visualization engines: folium and deck.gl.</p>
+<span class="sig-name descname"><span class="pre">export</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>Export an xarray DataArray to Cloud Optimized GeoTIFF (COG) format.</p>
+<p>This method handles different dimensional configurations:
+- For 4D data (time, band, x, y): Creates separate COGs for each time step
+- For 3D data (band, x, y): Creates a single COG with multiple bands
+- For 2D data (x, y): Creates a single COG with one band</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>engine</strong> (<em>str</em><em>, </em><em>optional</em>) – The visualization engine to use. Defaults to “folium”. Possible values are “folium” and “deck”.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>output_path</strong> (<em>str</em>) – Path where the COG(s) will be saved. For time series data, this should be a directory.
+For single COG, this should be the full file path.</p></li>
+<li><p><strong>overwrite</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, overwrites existing files at the output path. Default is False.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The map object from the selected visualization engine. For “folium” engine, returns a folium.Map object. For “deck” engine, returns None as the visualization is displayed in browser.</p>
+<dd class="field-even"><p>Creates COG file(s) at the specified output path and generates an edk.json metadata file.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>object</p>
+<dd class="field-odd"><p>None</p>
 </dd>
-</dl>
-<p class="rubric">Notes</p>
-<ul class="simple">
-<li><p>Currently does not support plotting time series data</p></li>
-<li><p>Currently does not support plotting multi-band data</p></li>
-<li><p>Requires the DataArray to have spatial dimensions (x, y)</p></li>
-</ul>
-<dl class="field-list simple">
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – If an invalid engine is specified</p>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the DataArray dimensions are not valid for COG export.</p>
 </dd>
 </dl>
 </dd></dl>

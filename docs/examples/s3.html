@@ -310,7 +310,10 @@
 <span class="n">bands</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">]</span>
 
 <span class="c1"># Create the stitched VRTs from the provided S3 data.</span>
-<span class="n">ds</span><span class="o">.</span><span class="n">to_vrts</span><span class="p">(</span><span class="n">bands</span><span class="p">)</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">mosaic</span><span class="p">(</span><span class="n">bands</span><span class="p">)</span>
+
+<span class="c1"># This returns a dataarray with the stitched bands</span>
+<span class="n">da</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">to_dataarray</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>

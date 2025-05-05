@@ -270,16 +270,16 @@
 <h1>Dataset<a class="headerlink" href="#dataset" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">earth_data_kit.stitching.</span></span><span class="sig-name descname"><span class="pre">Dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">earth_data_kit.stitching.</span></span><span class="sig-name descname"><span class="pre">Dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span></dt>
 <dd><p>The Dataset class is the main class implemented by the stitching module. It acts as a dataset wrapper and maps to a single remote dataset. A remote dataset can contain multiple files.</p>
 <p>Initializes a new dataset instance.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<em>str</em>) – User provided name, should be unique across datasets being opened.</p></li>
-<li><p><strong>source</strong> (<em>str</em>) – Source identifier, Read more <a class="reference internal" href="../stitching/defining-source.html#defining-source"><span class="std std-ref">Defining Source</span></a>.</p></li>
-<li><p><strong>engine</strong> (<em>str</em>) – Remote datasource engine, accepted values - <code class="docutils literal notranslate"><span class="pre">s3</span></code>, <code class="docutils literal notranslate"><span class="pre">earth_engine</span></code>.</p></li>
-<li><p><strong>clean</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to clean the tmp directory before stitching. Defaults to False.</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – Unique identifier for the dataset.</p></li>
+<li><p><strong>source</strong> (<em>str</em>) – Source identifier (S3 URI or Earth Engine collection ID).</p></li>
+<li><p><strong>engine</strong> (<em>str</em>) – Data source engine - <code class="docutils literal notranslate"><span class="pre">s3</span></code> or <code class="docutils literal notranslate"><span class="pre">earth_engine</span></code>.</p></li>
+<li><p><strong>clean</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to clean temporary files before processing. Defaults to True.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
@@ -288,31 +288,30 @@
 </dl>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">earth_data_kit.stitching.classes.dataset</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
-<span class="gp">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Initialize a dataset using the Earth Engine engine</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="s2">&quot;example_dataset&quot;</span><span class="p">,</span> <span class="s2">&quot;LANDSAT/LC08/C01/T1_SR&quot;</span><span class="p">,</span> <span class="s2">&quot;earth_engine&quot;</span><span class="p">,</span> <span class="n">clean</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Alternatively, initialize a dataset using the S3 engine</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="s2">&quot;example_dataset&quot;</span><span class="p">,</span> <span class="s2">&quot;LANDSAT/LC08/C01/T1_SR&quot;</span><span class="p">,</span> <span class="s2">&quot;earth_engine&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Or with S3</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="s2">&quot;example_dataset&quot;</span><span class="p">,</span> <span class="s2">&quot;s3://your-bucket/path&quot;</span><span class="p">,</span> <span class="s2">&quot;s3&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="py method">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">set_timebounds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em><span class="sig-paren">)</span></dt>
+<span class="sig-name descname"><span class="pre">set_timebounds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets time bounds for which we want to download the data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>start</strong> (<em>datetime</em>) – Start date.</p></li>
 <li><p><strong>end</strong> (<em>datetime</em>) – End date, inclusive.</p></li>
+<li><p><strong>resolution</strong> (<em>str</em><em>, </em><em>optional</em>) – Temporal resolution for combining images.
+Options include ‘daily’.</p></li>
 </ul>
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">earth_data_kit.stitching</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">earth_data_kit.stitching</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="s2">&quot;example_dataset&quot;</span><span class="p">,</span> <span class="s2">&quot;LANDSAT/LC08/C01/T1_SR&quot;</span><span class="p">,</span> <span class="s2">&quot;earth_engine&quot;</span><span class="p">,</span> <span class="n">clean</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="o">.</span><span class="n">set_timebounds</span><span class="p">(</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="o">.</span><span class="n">set_timebounds</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">))</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -506,7 +505,7 @@ is stored in a separate file.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">to_vrts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bands</span></span></em><span class="sig-paren">)</span></dt>
+<span class="sig-name descname"><span class="pre">mosaic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bands</span></span></em><span class="sig-paren">)</span></dt>
 <dd><p>Stitches the scene files together into VRTs based on the ordered band arrangement provided.
 For each unique date, this function extracts the required bands from the tile metadata and
 creates individual single-band VRTs that are reprojected to EPSG:3857 by default (if no target spatial reference
@@ -525,16 +524,30 @@ Also look at <code class="xref py py-meth docutils literal notranslate"><span cl
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="o">.</span><span class="n">set_timebounds</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">31</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="o">.</span><span class="n">discover</span><span class="p">()</span>  <span class="c1"># Discover available scene files before stitching</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bands</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="o">.</span><span class="n">to_vrts</span><span class="p">(</span><span class="n">bands</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="o">.</span><span class="n">mosaic</span><span class="p">(</span><span class="n">bands</span><span class="p">)</span>  <span class="c1"># Use mosaic instead of to_vrts</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>  <span class="c1"># Save the output VRTs to a JSON file</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>Saves the mosaiced VRTs into a combined JSON file.</p>
+<p>This method should be called after the <cite>mosaic()</cite> method to save the generated VRTs.
+The resulting JSON path is stored in the <cite>json_path</cite> attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
 <span class="sig-name descname"><span class="pre">to_dataarray</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
 <dd><p>Converts the dataset to an xarray DataArray.</p>
-<p>This method opens the VRT file created by <cite>to_vrts()</cite> using xarray with the ‘edk_dataset’ engine
+<p>This method opens the JSON file created by <cite>save()</cite> using xarray with the ‘edk_dataset’ engine
 and returns the DataArray corresponding to this dataset.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -551,42 +564,44 @@ and spatial coordinates.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">edk</span><span class="o">.</span><span class="n">stitching</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="s2">&quot;example_dataset&quot;</span><span class="p">,</span> <span class="s2">&quot;s3://your-bucket/path&quot;</span><span class="p">,</span> <span class="s2">&quot;s3&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="o">.</span><span class="n">set_timebounds</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">31</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="o">.</span><span class="n">discover</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="o">.</span><span class="n">to_vrts</span><span class="p">(</span><span class="n">bands</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="o">.</span><span class="n">mosaic</span><span class="p">(</span><span class="n">bands</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">data_array</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">to_dataarray</span><span class="p">()</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This method requires that <cite>to_vrts()</cite> has been called first to generate the VRT file.</p>
+<p>This method requires that <cite>mosaic()</cite> and <cite>save()</cite> have been called first to generate the JSON file.</p>
 </div>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span></dt>
-<dd><p>Create a Dataset instance from a file path.</p>
-<p>This method allows you to create a Dataset instance by providing a file path
-that contains the dataset information.</p>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">Dataset.</span></span><span class="sig-name descname"><span class="pre">dataarray_from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_path</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>Creates an xarray DataArray from a JSON file created by the <cite>save()</cite> method.</p>
+<p>Automatically determines optimal chunking based on the underlying raster block size.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – Path to the JSON file containing the dataset information.</p>
+<dd class="field-odd"><p><strong>json_path</strong> (<em>str</em>) – Path to the JSON file containing dataset information.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A Dataset instance created from the provided file path.</p>
+<dd class="field-even"><p>DataArray with dimensions for time, bands, and spatial coordinates.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Dataset</p>
+<dd class="field-odd"><p>xarray.DataArray</p>
 </dd>
 </dl>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">earth_data_kit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">edk</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">edk</span><span class="o">.</span><span class="n">stitching</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s2">&quot;path/to/dataset.json&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Now you can use the dataset instance to perform various operations, like getting the data as a DataArray</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">da</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">to_dataarray</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data_array</span> <span class="o">=</span> <span class="n">edk</span><span class="o">.</span><span class="n">stitching</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">dataarray_from_file</span><span class="p">(</span><span class="s2">&quot;path/to/dataset.json&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-</dd></dl>
-
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Loads a previously saved dataset without needing to recreate the Dataset object.</p>
+</div>
 </dd></dl>
 
 </section>
