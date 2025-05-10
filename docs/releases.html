@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Releases" href="releases.html" /><link rel="prev" title="Google Earth Engine" href="examples/earth_engine.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="EDK v0.1.2 Alpha Release" href="releases/v0.1.2.html" /><link rel="prev" title="Roadmap" href="roadmap.html" />
 
     <!-- Generated with Sphinx 7.4.7 and Furo 2024.08.06 -->
-        <title>Roadmap - Earth Data Kit 0.1.2.dev20250415 documentation</title>
+        <title>Releases - Earth Data Kit 0.1.2.dev20250415 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -216,8 +216,8 @@
 <li class="toctree-l2"><a class="reference internal" href="examples/earth_engine.html">Google Earth Engine</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Roadmap</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="releases.html">Releases</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Releases</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">Releases</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Releases</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="releases/v0.1.2.html">EDK v0.1.2 Alpha Release</a></li>
 </ul>
 </li>
@@ -250,7 +250,7 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="_sources/roadmap.rst.txt" title="View this page">
+  <a class="muted-link" href="_sources/releases.rst.txt" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
@@ -270,80 +270,21 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="roadmap">
-<h1>Roadmap<a class="headerlink" href="#roadmap" title="Link to this heading">¶</a></h1>
-<p>Below is the tentative roadmap for Earth Data Kit. Our approach is to look closely on how a GIS pipeline is built and fill the critical gaps using existing technologies or building new ones.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>We view this roadmap as a collaborative and dynamic blueprint for Earth Data Kit. We hope that community contributions will continuously refine these plans to meet real-world challenges.</p>
+          <section id="releases">
+<h1>Releases<a class="headerlink" href="#releases" title="Link to this heading">¶</a></h1>
+<p>This section includes all the release documentation for EDK.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="releases/v0.1.2.html">EDK v0.1.2 Alpha Release</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.1.2.html#what-s-new">🚀 What’s New</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.1.2.html#core-features">🔧 Core Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.1.2.html#coming-soon">🔮 Coming Soon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.1.2.html#open-design-questions">❓ Open Design Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="releases/v0.1.2.html#try-it-out">🧪 Try It Out</a></li>
+</ul>
+</li>
+</ul>
 </div>
-<ol class="arabic simple">
-<li><dl class="simple">
-<dt><strong>Stitching</strong></dt><dd><ul class="simple">
-<li><p>A module dedicated to collecting and stitching data from varied sources.</p></li>
-<li><p>Prepares data for analysis with functionalities such as clipping, reprojecting, and regridding.</p></li>
-<li><dl class="simple">
-<dt>Supported Sources:</dt><dd><ul>
-<li><dl class="simple">
-<dt>Rasters:</dt><dd><ul>
-<li><p>S3</p></li>
-<li><p>Google Earth Engine</p></li>
-<li><p>HTTP/HTTP(s) servers (<em>Planned</em>)</p></li>
-<li><p>NASA Earth Data (<em>Planned</em>)</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>Vectors (<em>Planned</em>):</dt><dd><ul>
-<li><p>OSM</p></li>
-<li><p>Overture Maps</p></li>
-<li><p>Google Buildings</p></li>
-<li><p>Bing Buildings</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt><strong>Visualization</strong></dt><dd><ul class="simple">
-<li><p>Extend xarray and geopandas to support large scale visualization.</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt><strong>Integration with xarray</strong></dt><dd><ul class="simple">
-<li><p>Develop a new xarray backend for EDK datasets.</p></li>
-<li><p>Enable lazy evaluation of datasets using Ray.</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt><strong>Integration with geopandas</strong></dt><dd><ul class="simple">
-<li><p>Introduce lazy evaluation.</p></li>
-<li><p>Support handling of out-of-memory datasets.</p></li>
-<li><p>Leverage Ray for backend processing.</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt><strong>Cloud Support</strong></dt><dd><ul class="simple">
-<li><p>Run seamlessly on AWS (Lambda, Batch, etc.), GCP, and Azure.</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-</ol>
 </section>
 
         </article>
@@ -351,23 +292,23 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="releases.html">
+          <a class="next-page" href="releases/v0.1.2.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Releases</div>
+                <div class="title">EDK v0.1.2 Alpha Release</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="examples/earth_engine.html">
+          <a class="prev-page" href="roadmap.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Google Earth Engine</div>
+                <div class="title">Roadmap</div>
                 
               </div>
             </a>
