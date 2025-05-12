@@ -6,7 +6,7 @@ Prerequisites
 Before using Earth Data Kit, ensure that the following are installed:
 
 - Python 3.12 or newer
-- GDAL 3.10 or above - https://gdal.org/en/stable/download.html#binaries
+- GDAL 3.8.4 or above - https://gdal.org/en/stable/download.html#binaries
 - s5cmd (optional) - https://github.com/peak/s5cmd - Only required if you plan to query data from S3 buckets or export to S3
 
 Installation
@@ -20,7 +20,7 @@ To install Earth Data Kit, follow these steps:
       $ git clone https://github.com/earth-data-kit/earth-data-kit.git
       $ cd earth-data-kit
 
-2. Switch to the master branch:
+2. Switch to the master or a release branch:
 
    .. code-block:: console
 
@@ -33,12 +33,6 @@ To install Earth Data Kit, follow these steps:
       $ bash install.sh
 
 This will check prerequisites, download the latest tarball from GitHub releases, and install EDK automatically.
-
-4. Note: For Linux environments, you might need to install additional dependencies before running the installation script:
-
-   .. code-block:: console
-
-      $ sudo apt-get install libgl1
 
 
 Environment Configuration
